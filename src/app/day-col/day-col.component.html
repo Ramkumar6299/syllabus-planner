@@ -1,0 +1,74 @@
+<div class="container" opacity="0.5" class="p-3 mb-2 bg-info text-white">
+  <div class="row">
+    <hr>
+    <h2 class="text-danger">Syllabus Planner</h2>
+    <hr>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-5 " class="p-3 mb-2 bg-danger text-white">
+      <h2>Days</h2>
+      <button class="btn btn-dark" (click)="addButton()">Add Days</button>
+      <div *ngFor="let iter of buttons" class="col-lg-2 align-self-center">
+        <button class="btn btn-primary mt-2 ml-7" (ngModel)="currentButton"
+          (click)="showTopics(iter.val)">{{iter.val}}</button>
+      </div>
+      <p class="text-dark">&nbsp;&nbsp;&nbsp; {{currentButton}}</p>
+    </div>
+    <div [ngClass]="{show:showTopic}" class="col-sm-4 " class="p-3 mb-2 bg-warning text-dark">
+      <h2 class="">Topics</h2>
+      <button class="btn btn-dark" (click)="addTopic()">Add Topics</button>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">{{currentButton}},{{currentTopic}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>Topic details</h4>
+          <h5>Title</h5>
+          <p>{{currentTitle}}&hellip;</p>
+          <h5>Type</h5>
+          <p>{{currentType}}&hellip;</p>
+          <h5>Content</h5>
+          <p>{{currentText}}&hellip;</p>
+          <h5>Instruction to Mentor</h5>
+          <p>{{currentText1}}&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+      <div *ngFor="let iters of topicsDisplay">
+        <button (ngModel)="currentTopic" class="d-flex mt-2 btn btn-secondary"
+          (click)="showText(iters,content)">{{iters}}</button>
+      </div>
+
+      <p>{{currentTopic}}</p>
+    </div>
+    <div class="col-sm-5 d-flex flex-column">
+
+
+      <form [formGroup]="myForm" (ngSubmit)="saveText(myForm)">
+        <label for="title">Title:</label><br>
+        <input type="text" formControlName='title' id="title" name="title"><br>
+        <label for="type">Type:</label><br>
+        <select name="type" formControlName='type' id="type">
+          <option value="task">Task</option>
+          <option value="pre-read">Pre-read</option>
+        </select>
+        <br>
+        <label for="texts">Content:</label><br>
+        <textarea class="mt-5" name="texts" formControlName='text' (ngModel)="currentText" id="" cols="30"
+          rows="2">{{currentText}}</textarea><br>
+          <label for="texts1">Instruction to Mentor:</label><br>
+        <textarea class="mt-5" name="texts1" formControlName='text1' (ngModel)="currentText1" id="" cols="30"
+          rows="2">{{currentText1}}</textarea>
+          
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+</div>

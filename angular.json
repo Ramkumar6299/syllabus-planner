@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "syllabus-planner"
+    }
+  },
+  "defaultProject": "syllabus-planner",
+  "cli": {
+    "analytics": "1d28e017-e0a6-47b5-9af7-85e33b60d93d"
+  }
 }
