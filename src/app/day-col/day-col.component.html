@@ -13,7 +13,7 @@
         <button class="btn btn-primary mt-2 ml-7" (ngModel)="currentButton"
           (click)="showTopics(iter.val)">{{iter.val}}</button>
       </div>
-      <p class="text-dark">&nbsp;&nbsp;&nbsp; {{currentButton}}</p>
+      <p class="text-dark">&nbsp;&nbsp;&nbsp; Now adding topic for :{{currentButton}}</p>
     </div>
     <div [ngClass]="{show:showTopic}" class="col-sm-4 " class="p-3 mb-2 bg-warning text-dark">
       <h2 class="">Topics</h2>
@@ -28,24 +28,31 @@
         <div class="modal-body">
           <h4>Topic details</h4>
           <h5>Title</h5>
-          <p>{{currentTitle}}&hellip;</p>
+          <p>{{currentTitle}}</p>
           <h5>Type</h5>
-          <p>{{currentType}}&hellip;</p>
+          <p>{{currentType}}</p>
           <h5>Content</h5>
-          <p>{{currentText}}&hellip;</p>
+          <p>{{currentText}}</p>
           <h5>Instruction to Mentor</h5>
-          <p>{{currentText1}}&hellip;</p>
+          <p>{{currentText1}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
         </div>
       </ng-template>
-      <div *ngFor="let iters of topicsDisplay">
-        <button (ngModel)="currentTopic" class="d-flex mt-2 btn btn-secondary"
+      <div class="row" *ngFor="let iters of topicsDisplay">
+        <div class="col-lg-3">
+          <button (ngModel)="currentTopic" class="d-flex mt-2 btn btn-secondary"
           (click)="showText(iters,content)">{{iters}}</button>
+        </div>
+        <div class="col-lg-3">
+         <button type="button" class="close"(click)="deleteTopic(iters)" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
 
-      <p>{{currentTopic}}</p>
+      <p class="modal-title">Now adding topicContent for: {{currentTopic}}</p>
     </div>
     <div class="col-sm-5 d-flex flex-column">
 
